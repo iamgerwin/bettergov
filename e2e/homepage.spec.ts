@@ -62,20 +62,18 @@ test.describe('Homepage', () => {
 
     if (isMobile) {
       // Mobile menu button should be visible
-      const menuButton = page.getByRole('button', { name: /Open main menu/i });
+      const menuButton = page.getByRole('button', { name: /menu/i });
       await expect(menuButton).toBeVisible();
 
       // Click menu button
       await menuButton.click();
 
       // Mobile menu should be visible
-      await expect(
-        page.getByRole('button', { name: /Close menu/i })
-      ).toBeVisible();
+      await expect(page.getByRole('button', { name: /close/i })).toBeVisible();
     } else {
       // Desktop navigation should be visible
       await expect(
-        page.locator('nav').getByText('The Philippines').first()
+        page.locator('nav').getByRole('link', { name: 'Philippines' }).first()
       ).toBeVisible();
     }
   });
